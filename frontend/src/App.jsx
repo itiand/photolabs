@@ -1,9 +1,10 @@
 import React from 'react';
 
 // import PhotoListItem from './components/PhotoListItem';
-import PhotoList from './components/PhotoList';
+// import PhotoList from './components/PhotoList';
 // import TopicListItem from './components/TopicListItem';
-import TopicList from './components/TopicList';
+// import TopicList from './components/TopicList';
+import TopNavigation from './components/TopNavigationBar';
 import './App.scss';
 
 // Note: Rendering a single component to build components in isolation
@@ -17,7 +18,8 @@ const App = () => (
     {/* {arrayPhotos} */}
     {/* <PhotoList /> */}
     {/* <TopicListItem /> */}
-    <TopicList/>
+    {/* <TopicList/> */}
+    <TopNavigation/>
   </div>
 );
 
