@@ -5,6 +5,7 @@ import React from 'react';
 // import TopicListItem from './components/TopicListItem';
 // import TopicList from './components/TopicList';
 import TopNavigation from './components/TopNavigationBar';
+import HomeRoute from './components/HomeRoute';
 import './App.scss';
 
 // Note: Rendering a single component to build components in isolation
@@ -19,7 +20,9 @@ const App = () => (
     {/* <PhotoList /> */}
     {/* <TopicListItem /> */}
     {/* <TopicList/> */}
-    <TopNavigation/>
+    {/* <TopNavigation/> */}
+
+    <HomeRoute/>
   </div>
 );
 
