@@ -20,10 +20,10 @@ const PhotoListItem = (props) => {
   };
 
   return (
-    <div className="photo-list__item" key={id}>
+    <div className="card photo-list__item" key={id}>
       <PhotoFavButton likes={likes} toggleLike={toggleLike} />
-      <img className="photo-list__image" src={urls.regular} alt="" />
-      <div className="photo-list__user-details">
+      <img className="card-img photo-list__image" src={urls.regular} alt="" />
+      <div className="card-body photo-list__user-details">
         <img className="photo-list__user-profile" src={user.profile} alt="" />
         <div className="profile-info photo-list__user-info">
           <h1>{username}</h1>
