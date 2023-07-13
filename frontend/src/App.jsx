@@ -4,6 +4,8 @@ import React from 'react';
 // import TopicListItem from './components/TopicListItem';
 // import TopicList from './components/TopicList';
 // import TopNavigation from './components/TopNavigationBar';
+import topics from './mocks/topics';
+import photos from './mocks/photos';
 import HomeRoute from './components/HomeRoute';
 import './App.scss';
 
@@ -11,8 +13,6 @@ import './App.scss';
 
 // const arrayPhotos = Array(3).fill(<PhotoListItem />);
 const App = () => (
-
-
   <div className="App">
     {/* <PhotoListItem/> */}
     {/* {arrayPhotos} */}
@@ -21,7 +21,7 @@ const App = () => (
     {/* <TopicList/> */}
     {/* <TopNavigation/> */}
 
-    <HomeRoute/>
+    <HomeRoute photos={photos} topics={topics}/>
   </div>
 );
 
