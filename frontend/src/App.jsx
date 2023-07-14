@@ -14,17 +14,37 @@ import './App.scss';
 
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImg, setSelectedImage] = useState('');
 
-  const openModal = (photoURL) => {
-    setIsModalOpen(true)
-    setSelectedImage(photoURL)
-    console.log('selected url', photoURL);
+  const initialSelectedImgState = {
+    id: ``,
+    location: {
+      city: ``,
+      country: ``
+    },
+    urls: {
+      full: ``,
+      regular: ``
+    },
+    user: {
+      id: ``,
+      username: ``,
+      name: ``,
+      profile: ``
+    },
+    isLikes: false
   }
+  const [selectedImg, setSelectedImage] = useState(initialSelectedImgState);
+
+  const openModal = (id, location, urls, user, isLikes) => {
+    setIsModalOpen(true);
+    setSelectedImage((prev) => {
+      return {...prev, id, location, urls, user, isLikes};
+    });
+  };
 
   const closeModal = () => {
-    setIsModalOpen(false)
-  }
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="App">
