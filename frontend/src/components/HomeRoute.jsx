@@ -9,7 +9,7 @@ import '../styles/HomeRoute.scss';
 
 const HomeRoute = (props) => {
 
-  const [likes, setLikes] = useState(["1","2","3"]);
+  const [likes, setLikes] = useState(["1","7","3"]);
   const addRemoveLike = function(id) {
     setLikes((prevLikes) => {
       if (prevLikes.includes(id)) {
@@ -20,10 +20,14 @@ const HomeRoute = (props) => {
     });
   };
 
+  const isFavPhotoExist = likes.length > 0 ? true : false;
+
   const { photos, topics } = props;
+
+  
   return (
     <div className="home-route">
-      <TopNavigation topics={topics} />
+      <TopNavigation isFavPhotoExist={isFavPhotoExist} topics={topics} />
       <PhotoList photos={photos} likes={likes} addRemoveLike={addRemoveLike} />
     </div>
   );
