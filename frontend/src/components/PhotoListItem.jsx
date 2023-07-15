@@ -11,8 +11,8 @@ const PhotoListItem = (props) => {
   const { id, location, urls, user, addRemoveLike, isLikes, likes, openModal} = props;
   return (
     <li className="card photo-list__item m-auto" key={id}>
-      <PhotoFavButton />
-      <img className="card-img photo-list__image" src={urls.regular} alt="" onClick={() => openModal(id, location, urls, user, isLikes)} />
+      <PhotoFavButton isLikes={isLikes} addRemoveLike={addRemoveLike} id={id} />
+      <img className="card-img photo-list__image" src={urls.regular} alt="" onClick={() => openModal(id, location, urls, user)} />
       <div className="card-body photo-list__user-details p-2">
         <img className="photo-list__user-profile" src={user.profile} alt="" />
         <div className="profile-info photo-list__user-info">
