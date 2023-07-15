@@ -10,6 +10,10 @@
   // overflow-y: scroll;
   border-radius: 12px;
   height: fit-content;
+
+  .photo-list__item {
+    max-width: 300px;
+  }
 }
 
 .photo-details-modal__close-button {
@@ -84,3 +88,4 @@
     font-size: 1.2em;
   }
 }
+
