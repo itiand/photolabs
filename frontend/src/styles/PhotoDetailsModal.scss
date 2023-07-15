@@ -5,10 +5,11 @@
   top: 55%;
   left: 50%;
   transform: translate(-50%, -40%);
-  height: 80%;
-  width: 55%;
+  // height: 80%;
+  // width: 55%;
   // overflow-y: scroll;
   border-radius: 12px;
+  height: fit-content;
 }
 
 .photo-details-modal__close-button {
@@ -20,8 +21,8 @@
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
-  margin-left: 16px;
-  margin-top: 16px;
+  margin-left: -8px;
+  margin-top: 8px;
 }
 
 .photo-details-modal__images {
@@ -30,8 +31,11 @@
 }
 
 .photo-details-modal__image {
-  max-width: 95%;
+  // max-width: 95%;
+  width: 100%;
   margin: auto;
+  // max-width: 600px;
+  max-height: 670px;
 }
 
 .photo-details-modal__top-bar {
