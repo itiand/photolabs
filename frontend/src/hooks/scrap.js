@@ -1,7 +1,6 @@
-import { useReducer } from "react";
+import { useState, useReducer } from "react";
 
 const useApplicationData = () => {
-
   const initialState = {
     likes: ["1", "7", "3"],
     selectedImg: getInitialSelectedImgState(),
@@ -12,8 +11,7 @@ const useApplicationData = () => {
     FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
     SET_PHOTO_DATA: 'SET_PHOTO_DATA',
     SELECT_PHOTO: 'SELECT_PHOTO',
-    DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
-    CLOSE_PHOTO_DETAILS: 'CLOSE_PHOTO_DETAILS'
+    DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
   };
 
   function reducer(state, action) {
@@ -47,17 +45,26 @@ const useApplicationData = () => {
           ...state,
           isModalOpen: true
         };
-      case ACTIONS.CLOSE_PHOTO_DETAILS:
-        return {
-          ...state,
-          isModalOpen: false
-        }
       default:
         throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
     }
   }
-
+  
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { likes, selectedImg, isModalOpen } = state;
+
+  const addRemoveLike = function(id) {
+    dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: id });
+  };
+  
+  const openModal = (id, location, urls, user, similar_photos) => {
+    dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { id, location, urls, user, similar_photos } });
+    dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
+  };
+  
+  const closeModal = () => {
+    dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
+  };
 
   function getInitialSelectedImgState() {
     return {
@@ -79,19 +86,6 @@ const useApplicationData = () => {
       similar_photos: []
     };
   }
-
-  const addRemoveLike = function(id) {
-    dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: id });
-  };
-
-  const openModal = (id, location, urls, user, similar_photos) => {
-    dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { id, location, urls, user, similar_photos } });
-    dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
-  };
-
-  const closeModal = () => {
-    dispatch({type: ACTIONS.CLOSE_PHOTO_DETAILS});
-  };
 
   return {
     state,
