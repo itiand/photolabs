@@ -13,8 +13,6 @@ import './App.scss';
 // Note: Rendering a single component to build components in isolation
 
 const App = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const initialSelectedImgState = {
     id: ``,
     location: {
@@ -33,7 +31,20 @@ const App = () => {
     },
     isLikes: false
   }
+
+  const [likes, setLikes] = useState(["1","7","3"]);
   const [selectedImg, setSelectedImage] = useState(initialSelectedImgState);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const addRemoveLike = function(id) {
+    setLikes((prevLikes) => {
+      if (prevLikes.includes(id)) {
+        return prevLikes.filter(likeId => likeId !== id);
+      } else {
+        return [...prevLikes, id];
+      }
+    });
+  };
 
   const openModal = (id, location, urls, user, isLikes) => {
     setIsModalOpen(true);
@@ -49,7 +60,7 @@ const App = () => {
   return (
     <div className="App">
       <PhotoDetailsModal isModalOpen={isModalOpen} closeModal={closeModal} selectedImg={selectedImg} />
-      <HomeRoute photos={photos} topics={topics} openModal={openModal} />
+      <HomeRoute likes={likes} setLikes={setLikes} addRemoveLike={addRemoveLike} photos={photos} topics={topics} openModal={openModal} />
     </div>
   );
 };

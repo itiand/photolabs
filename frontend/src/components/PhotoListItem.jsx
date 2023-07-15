@@ -8,10 +8,10 @@ import '../styles/PhotoListItem.scss';
 
 const PhotoListItem = (props) => {
   console.log('waldo', props);
-  const { id, location, urls, user, addRemoveLike, isLikes, openModal} = props;
+  const { id, location, urls, user, addRemoveLike, isLikes, likes, openModal} = props;
   return (
     <li className="card photo-list__item m-auto" key={id}>
-      <PhotoFavButton isLikes={isLikes} addRemoveLike={addRemoveLike} id={id} />
+      <PhotoFavButton />
       <img className="card-img photo-list__image" src={urls.regular} alt="" onClick={() => openModal(id, location, urls, user, isLikes)} />
       <div className="card-body photo-list__user-details p-2">
         <img className="photo-list__user-profile" src={user.profile} alt="" />
