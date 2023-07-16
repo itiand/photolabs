@@ -4,7 +4,7 @@ import FavBadge from './FavBadge';
 import '../styles/TopNavigationBar.scss';
 
 const TopNavigation = (props) => {
-  const { topics, isFavPhotoExist } = props;
+  const { topics, isFavPhotoExist, getPhotosByTopic } = props;
   const [isAtTop, setIsAtTop] = useState(true);
 
   useEffect(() => {
@@ -20,11 +20,15 @@ const TopNavigation = (props) => {
     };
   }, []);
 
+  //on click 
+    //request 
+    //with the retrieved data, repopulate photolist --> done by changing photos state
+
   return (
     <div className={`top-nav-bar fixed top-0 left-0 right-0 z-40 ${isAtTop ? 'bg-white' : 'bg-opacity-75 bg-white'}`}>
       <span className="top-nav-bar__logo mt-2">PhotoLabs</span>
       <div className="flex flex-row items-center mr-6">
-        <TopicList topics={topics} />
+        <TopicList topics={topics} getPhotosByTopic={getPhotosByTopic} />
         <FavBadge isFavPhotoExist={isFavPhotoExist} />
       </div>
     </div>
