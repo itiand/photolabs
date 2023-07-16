@@ -1,7 +1,26 @@
 import { useReducer } from "react";
 
 const useApplicationData = () => {
-
+  function getInitialSelectedImgState() {
+    return {
+      id: ``,
+      location: {
+        city: ``,
+        country: ``
+      },
+      urls: {
+        full: ``,
+        regular: ``
+      },
+      user: {
+        id: ``,
+        username: ``,
+        name: ``,
+        profile: ``
+      },
+      similar_photos: []
+    };
+  }
   const initialState = {
     likes: ["1", "7", "3"],
     selectedImg: getInitialSelectedImgState(),
@@ -59,36 +78,14 @@ const useApplicationData = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  function getInitialSelectedImgState() {
-    return {
-      id: ``,
-      location: {
-        city: ``,
-        country: ``
-      },
-      urls: {
-        full: ``,
-        regular: ``
-      },
-      user: {
-        id: ``,
-        username: ``,
-        name: ``,
-        profile: ``
-      },
-      similar_photos: []
-    };
-  }
-
+  //Dispatches
   const addRemoveLike = function(id) {
     dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: id });
   };
-
   const openModal = (id, location, urls, user, similar_photos) => {
     dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { id, location, urls, user, similar_photos } });
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
   };
-
   const closeModal = () => {
     dispatch({type: ACTIONS.CLOSE_PHOTO_DETAILS});
   };
