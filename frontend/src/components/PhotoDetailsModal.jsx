@@ -5,11 +5,15 @@ import '../styles/PhotoDetailsModal.scss';
 
 
 export const PhotoDetailsModal = (props) => {
-  const { isModalOpen, closeModal, openModal, selectedImg, addRemoveLike, likes } = props;
-  const { id, location, urls, user } = selectedImg;
+  const { isModalOpen, closeModal, openModal, selectedImg, addRemoveLike, likes, photos } = props;
+  const { id, location, urls, user, similar_photos } = selectedImg;
   const isLikes = likes.includes(id) ? true : false;
   const photoListClass = "pt-1 grid grid-cols-2 xl:grid-cols-3 gap-2";
-  const similar_photosArrObj = Object.values(selectedImg.similar_photos);
+
+  //get the ids of similar photos to an array.
+  //filter through original photos for photos that are included in the array
+  const  similarPhotosId = similar_photos.map(photo => photo.id);
+  const similarPhotos = photos.filter(photo => similarPhotosId.includes(photo.id));
 
   return (
     <>
@@ -43,7 +47,7 @@ export const PhotoDetailsModal = (props) => {
         </div>
         <div className='similar'>
         <h4 className='text-xs text-stone-700'>You might like...</h4>
-        <PhotoList photoListClass={photoListClass} photos={similar_photosArrObj} likes={likes} addRemoveLike={addRemoveLike} openModal={openModal} />
+        <PhotoList photoListClass={photoListClass} photos={similarPhotos} likes={likes} addRemoveLike={addRemoveLike} openModal={openModal} />
         </div>
       </div>
     </>

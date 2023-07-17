@@ -44,6 +44,7 @@ const App = () => {
         closeModal={closeModal}
         selectedImg={selectedImg}
         openModal={openModal}
+        photos={photos}
       />
       <HomeRoute
         likes={likes}
