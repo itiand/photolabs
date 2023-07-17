@@ -1,4 +1,6 @@
-import { useReducer } from "react";
+import { useReducer, useState, useEffect } from "react";
+import urls from "../env";
+
 
 const useApplicationData = () => {
   function getInitialSelectedImgState() {
@@ -21,12 +23,12 @@ const useApplicationData = () => {
       similar_photos: []
     };
   }
+
   const initialState = {
     likes: [],
     selectedImg: getInitialSelectedImgState(),
     isModalOpen: false
   };
-  
   const ACTIONS = {
     FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
     SET_PHOTO_DATA: 'SET_PHOTO_DATA',
@@ -78,6 +80,34 @@ const useApplicationData = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  
+  const [photos, setPhotos] = useState([]);
+  const [topics, setTopics] = useState([]);
+
+  
+  //URL requests
+  const { GET_PHOTOS, GET_TOPICS, GET_PHOTOS_BY_TOPICS } = urls;
+  useEffect(() => {
+    fetch(GET_PHOTOS)
+      .then(res => res.json())
+      .then(data => setPhotos([...data]))
+      .catch(err => console.log(err));
+
+    fetch(GET_TOPICS)
+      .then(res => res.json())
+      .then(data => setTopics([...data]))
+      .catch(err => console.log(err));
+
+  }, []);
+
+  const getPhotosByTopic = function(topicId) {
+    const endpoint = GET_PHOTOS_BY_TOPICS.replace(":topic_id", topicId);
+    fetch(endpoint)
+      .then(res => res.json())
+      .then(data => setPhotos([...data]))
+      .catch(err => console.log(err));
+  };
+
   //Dispatches
   const addRemoveLike = function(id) {
     dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: id });
@@ -91,7 +121,10 @@ const useApplicationData = () => {
   };
 
   return {
+    photos,
+    topics,
     state,
+    getPhotosByTopic,
     addRemoveLike,
     openModal,
     closeModal

@@ -8,17 +8,18 @@ export const PhotoDetailsModal = (props) => {
   const { isModalOpen, closeModal, openModal, selectedImg, addRemoveLike, likes, photos } = props;
   const { id, location, urls, user, similar_photos } = selectedImg;
   const isLikes = likes.includes(id) ? true : false;
+
+  //tailwind css --> coming from modal
   const photoListClass = "text-xs pt-1 grid grid-cols-2 xl:grid-cols-3 gap-2";
 
-  //get the ids of similar photos to an array.
-  //filter through original photos for photos that are included in the array
-  const similarPhotosId = similar_photos.map(photo => photo.id);
-  const similarPhotos = photos.filter(photo => similarPhotosId.includes(photo.id));
+  //Retrieve similar photos
+  const similarPhotosId = similar_photos.map(photo => photo.id); //get the ids of similar photos to an array.
+  const similarPhotos = photos.filter(photo => similarPhotosId.includes(photo.id)); //filter through original photos for photos that are included in the array
 
   return (
     <>
       <div className={`overlay z-50 ${isModalOpen ? '' : 'hidden'}`}></div>
-      <div className={`pt-0 p-6 photo-details-modal z-50 ${isModalOpen ? '' : 'hidden'}`}>
+      <div className={`photo-details-modal pt-0 p-6 z-50 ${isModalOpen ? '' : 'hidden'}`}>
         <button className='photo-details-modal__close-button' onClick={closeModal}>
           <svg width="18" height="24" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_428_287)">
@@ -32,7 +33,7 @@ export const PhotoDetailsModal = (props) => {
             </defs>
           </svg>
         </button>
-        <div className="card w-fit mx-auto mb-2">
+        <section className="card w-fit mx-auto mb-2">
           <div className='w-fit m-auto'>
             <PhotoFavButton isLikes={isLikes} addRemoveLike={addRemoveLike} id={id} />
             <img className="card-img photo-details-modal__image" src={urls.full} alt="" />
@@ -44,11 +45,11 @@ export const PhotoDetailsModal = (props) => {
               <h2 className="photo-list__user-location">{location.city}, {location.country}</h2>
             </div>
           </div>
-        </div>
-        <div className='similar'>
+        </section>
+        <section className='similar'>
           <h4 className='text-xs'>You might like...</h4>
           <PhotoList photoListClass={photoListClass} photos={similarPhotos} likes={likes} addRemoveLike={addRemoveLike} openModal={openModal} />
-        </div>
+        </section>
       </div>
     </>
   );

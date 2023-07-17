@@ -1,40 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import useApplicationData from './hooks/useApplicationData';
 import HomeRoute from './components/HomeRoute';
 import PhotoDetailsModal from './components/PhotoDetailsModal';
 import './App.scss';
 
 const App = () => {
-  const [photos, setPhotos] = useState([]);
-  const [topics, setTopics] = useState([]);
 
-  const { state, addRemoveLike, openModal, closeModal } = useApplicationData();
+  const { photos, topics, state, addRemoveLike, openModal, closeModal, getPhotosByTopic } = useApplicationData();
   const { likes, selectedImg, isModalOpen } = state;
-
-  const GET_PHOTOS = "http://localhost:8001/api/photos";
-  const GET_TOPICS = "http://localhost:8001/api/topics";
-  const GET_PHOTOS_BY_TOPICS = "http://localhost:8001/api/topics/photos/:topic_id";
-
-  useEffect(() => {
-    fetch(GET_PHOTOS)
-      .then(res => res.json())
-      .then(data => setPhotos([...data]))
-      .catch(err => console.log(err));
-
-    fetch(GET_TOPICS)
-      .then(res => res.json())
-      .then(data => setTopics([...data]))
-      .catch(err => console.log(err));
-
-  }, []);
-
-  const getPhotosByTopic = function(topicId) { 
-    const endpoint = GET_PHOTOS_BY_TOPICS.replace(":topic_id", topicId);
-    fetch(endpoint)
-      .then(res => res.json())
-      .then(data => setPhotos([...data]))
-      .catch(err => console.log(err));
-  };
 
   return (
     <div className="App">
