@@ -8,11 +8,11 @@ export const PhotoDetailsModal = (props) => {
   const { isModalOpen, closeModal, openModal, selectedImg, addRemoveLike, likes, photos } = props;
   const { id, location, urls, user, similar_photos } = selectedImg;
   const isLikes = likes.includes(id) ? true : false;
-  const photoListClass = "pt-1 grid grid-cols-2 xl:grid-cols-3 gap-2";
+  const photoListClass = "text-xs pt-1 grid grid-cols-2 xl:grid-cols-3 gap-2";
 
   //get the ids of similar photos to an array.
   //filter through original photos for photos that are included in the array
-  const  similarPhotosId = similar_photos.map(photo => photo.id);
+  const similarPhotosId = similar_photos.map(photo => photo.id);
   const similarPhotos = photos.filter(photo => similarPhotosId.includes(photo.id));
 
   return (
@@ -32,7 +32,7 @@ export const PhotoDetailsModal = (props) => {
             </defs>
           </svg>
         </button>
-        <div className="card w-fit m-auto">
+        <div className="card w-fit mx-auto mb-2">
           <div className='w-fit m-auto'>
             <PhotoFavButton isLikes={isLikes} addRemoveLike={addRemoveLike} id={id} />
             <img className="card-img photo-details-modal__image" src={urls.full} alt="" />
@@ -46,8 +46,8 @@ export const PhotoDetailsModal = (props) => {
           </div>
         </div>
         <div className='similar'>
-        <h4 className='text-xs text-stone-700'>You might like...</h4>
-        <PhotoList photoListClass={photoListClass} photos={similarPhotos} likes={likes} addRemoveLike={addRemoveLike} openModal={openModal} />
+          <h4 className='text-xs'>You might like...</h4>
+          <PhotoList photoListClass={photoListClass} photos={similarPhotos} likes={likes} addRemoveLike={addRemoveLike} openModal={openModal} />
         </div>
       </div>
     </>

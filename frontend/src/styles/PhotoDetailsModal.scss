@@ -1,30 +1,50 @@
 .photo-details-modal {
   background-color: white;
-  // box-shadow: 0 0 0 50vmax rgba(0,0,0,.5);
-  position: absolute;
-  top: 80%;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -40%);
-  max-width: 2000px;
-  border-radius: 12px;
+  transform: translate(-50%, -50%);
+  max-width: 95%;
+  max-height: 95%;
+  overflow: auto;
   height: fit-content;
+
+  .similar {
+    h4 {
+      color: #838383;
+    }
+  }
 
   .photo-list__item {
     max-width: 250px;
     .card-img {
-      max-height: 100px;
+      max-height: 150px;
+    }
+
+    .photo-list__user-profile {
+      width: 25px;
+      height: 25px;
+    }
+
+    .photo-list__user-details {
+      h1 {
+        font-size: 1em;
+      }
+      .photo-list__user-location {
+        font-size: 0.8em;
+      }
     }
   }
   
 }
 .overlay {
-  position:fixed;
-  left:0;
-  top:0;
-  width:100vw;
-  height:100vh;
-  background-color:#000;
-  opacity:0.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: 0.5;
 }
 .photo-details-modal__close-button {
   background-color: white;
