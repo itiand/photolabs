@@ -2,18 +2,20 @@
   background-color: white;
   // box-shadow: 0 0 0 50vmax rgba(0,0,0,.5);
   position: absolute;
-  top: 100%;
+  top: 80%;
   left: 50%;
   transform: translate(-50%, -40%);
-  // height: 80%;
-  // width: 55%;
-  // overflow-y: scroll;
+  max-width: 2000px;
   border-radius: 12px;
   height: fit-content;
 
   .photo-list__item {
-    max-width: 300px;
+    max-width: 250px;
+    .card-img {
+      max-height: 100px;
+    }
   }
+  
 }
 .overlay {
   position:fixed;
@@ -46,7 +48,6 @@
   // max-width: 95%;
   width: 100%;
   margin: auto;
-  // max-width: 600px;
   max-height: 670px;
 }
 

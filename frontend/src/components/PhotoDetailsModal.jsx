@@ -8,13 +8,13 @@ export const PhotoDetailsModal = (props) => {
   const { isModalOpen, closeModal, openModal, selectedImg, addRemoveLike, likes } = props;
   const { id, location, urls, user } = selectedImg;
   const isLikes = likes.includes(id) ? true : false;
-  const photoListClass = "pt-6 grid grid-cols-2 lg:grid-cols-3 gap-2";
+  const photoListClass = "pt-1 grid grid-cols-2 xl:grid-cols-3 gap-2";
   const similar_photosArrObj = Object.values(selectedImg.similar_photos);
 
   return (
     <>
       <div className={`overlay z-50 ${isModalOpen ? '' : 'hidden'}`}></div>
-      <div className={`px-4 photo-details-modal z-50 ${isModalOpen ? '' : 'hidden'}`}>
+      <div className={`pt-0 p-6 photo-details-modal z-50 ${isModalOpen ? '' : 'hidden'}`}>
         <button className='photo-details-modal__close-button' onClick={closeModal}>
           <svg width="18" height="24" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_428_287)">
@@ -41,7 +41,10 @@ export const PhotoDetailsModal = (props) => {
             </div>
           </div>
         </div>
+        <div className='similar'>
+        <h4 className='text-xs text-stone-700'>You might like...</h4>
         <PhotoList photoListClass={photoListClass} photos={similar_photosArrObj} likes={likes} addRemoveLike={addRemoveLike} openModal={openModal} />
+        </div>
       </div>
     </>
   );
