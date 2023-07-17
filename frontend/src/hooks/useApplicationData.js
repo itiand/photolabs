@@ -29,6 +29,7 @@ const useApplicationData = () => {
     selectedImg: getInitialSelectedImgState(),
     isModalOpen: false
   };
+
   const ACTIONS = {
     FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
     SET_PHOTO_DATA: 'SET_PHOTO_DATA',
@@ -83,6 +84,8 @@ const useApplicationData = () => {
   
   const [photos, setPhotos] = useState([]);
   const [topics, setTopics] = useState([]);
+  const [selectedTopic, setSelectedTopic] = useState(0)
+
 
   
   //URL requests
@@ -102,6 +105,7 @@ const useApplicationData = () => {
 
   const getPhotosByTopic = function(topicId) {
     const endpoint = GET_PHOTOS_BY_TOPICS.replace(":topic_id", topicId);
+    setSelectedTopic(topicId)
     fetch(endpoint)
       .then(res => res.json())
       .then(data => setPhotos([...data]))
@@ -123,6 +127,7 @@ const useApplicationData = () => {
   return {
     photos,
     topics,
+    selectedTopic,
     state,
     getPhotosByTopic,
     addRemoveLike,

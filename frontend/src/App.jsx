@@ -6,7 +6,7 @@ import './App.scss';
 
 const App = () => {
 
-  const { photos, topics, state, addRemoveLike, openModal, closeModal, getPhotosByTopic } = useApplicationData();
+  const { photos, topics, selectedTopic, state, addRemoveLike, openModal, closeModal, getPhotosByTopic } = useApplicationData();
   const { likes, selectedImg, isModalOpen } = state;
 
   return (
@@ -23,7 +23,8 @@ const App = () => {
         likes={likes}
         addRemoveLike={addRemoveLike}
         photos={photos}
-        topics={topics}
+        topics={topics} 
+        selectedTopic={selectedTopic}
         openModal={openModal}
         getPhotosByTopic={getPhotosByTopic}
       />
