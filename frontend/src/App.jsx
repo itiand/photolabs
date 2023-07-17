@@ -28,9 +28,9 @@ const App = () => {
 
   }, []);
 
-  const getPhotosByTopic = function(topicId) {
+  const getPhotosByTopic = function(topicId) { 
     const endpoint = GET_PHOTOS_BY_TOPICS.replace(":topic_id", topicId);
-    fetch(`http://localhost:8001/api/topics/photos/${topicId}`)
+    fetch(endpoint)
       .then(res => res.json())
       .then(data => setPhotos([...data]))
       .catch(err => console.log(err));
