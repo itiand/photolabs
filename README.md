@@ -10,7 +10,13 @@ Photolabs is a desktop application built with React, serving as a stock photo ga
 
 ## Preview
 
+!["Responsive design"](https://github.com/itiand/photolabs/blob/main/frontend/docs/layout-change.gif?raw=true)
 
+
+!["Filters"](https://github.com/itiand/photolabs/blob/main/frontend/docs/likes-and-filters.gif?raw=true)
+
+
+!["Modals"](https://github.com/itiand/photolabs/blob/main/frontend/docs/likes-and-modal.gif?raw=true)
 
 ## Setup
 
@@ -31,3 +37,18 @@ Read `backend/readme` for further setup details.
 cd backend
 npm start
 ```
+
+## Technologies Used
+
+### Frontend
+
+- React
+- Tailwind CSS
+- Sass
+- Fetch API
+
+### Backend
+
+- Node.js
+- Express
+- PostgreSQL
